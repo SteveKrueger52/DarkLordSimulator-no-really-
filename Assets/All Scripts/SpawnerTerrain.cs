@@ -19,5 +19,5 @@ public abstract class SpawnerTerrain : WorldTerrain {
         }
     }
 
-    abstract OurGameObject spawn ();
+    protected abstract OurGameObject spawn ();
 }

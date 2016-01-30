@@ -28,6 +28,7 @@ public class Team : MonoBehaviour {
         }
         else {
             score -= souls;
+            return true;
         }
     }
 }
