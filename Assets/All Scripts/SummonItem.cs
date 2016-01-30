@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SummonItem : Item {
+public class SummonItem : MonoBehaviour {
 
     OurGameObject toSummon;
 
