@@ -26,8 +26,4 @@ public class Game : MonoBehaviour {
         return toReturn;
     }
 
-    public void addObject (OurGameObject toAdd) {
-        gameObjects.Add (toAdd);
-    }
-
 }
