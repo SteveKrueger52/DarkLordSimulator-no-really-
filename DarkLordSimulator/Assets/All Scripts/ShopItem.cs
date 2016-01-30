@@ -17,8 +17,9 @@ public class ShopItem : WorldTerrain {
 	}
 
 	void Transaction(Player p) {
-		if (p.credits > price) {
+		if (p.souls >= price) {
 			p.addItem(toSell);
+			p.souls -= price;
 		}
 	}
 }

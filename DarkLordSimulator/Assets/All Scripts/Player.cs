@@ -7,7 +7,7 @@ public class Player : Character {
 		public Vector2 refPos;
 	    public Item[] inventory;
 		private int inventoryIndex = 0;
-	    public int credits = 200;
+	    public int souls = 200;
 
 	// Use this for initialization
 	void Start () {
