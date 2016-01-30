@@ -7,6 +7,9 @@ public class Minion : NonPlayerCharacter {
 		Team team;
 		ArrayList holds; // All Villagers being held
 		int holdCapacity;
+		Vector2 target;
+	int range;
+	int range2;
 
 	// Use this for initialization
 	void Start () {
@@ -17,15 +20,20 @@ public class Minion : NonPlayerCharacter {
 	void Update () {
 		
 	//get behavior
-		if (far from player){
-			//set target to player
-		} else if (closest enemy within range){
+		if (distanceTo(leader).magnitude > range2){
+			target = leader.refPos;
+		//} else if (closest enemy within range){
 			//set target to enemy
-		} else if (closest Villager within range){
+		//} else if (closest Villager within range){
 			//set target to villager
 		} else {
-			//set target to player}
+			target = leader.refPos;
+        }
 
-		Move ();
+		move ();
 	}
+
+    void move() {
+        
+    }
 }
