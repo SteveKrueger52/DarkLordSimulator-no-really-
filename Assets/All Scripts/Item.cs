@@ -5,7 +5,5 @@ public abstract class Item : MonoBehaviour {
     int tier;
     int typeID;
 
-    public void activateItem (Player caster) {
-        
-    }
+    public abstract void useItem(Player caster);
 }

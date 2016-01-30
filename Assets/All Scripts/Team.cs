@@ -18,17 +18,4 @@ public class Team : MonoBehaviour {
 	void Update () {
 	
 	}
-
-    public void addScore(int score) {
-        this.score += score;
-    }
-    public bool spendSouls(int souls) {
-        if (score - souls < 0) {
-            return false;
-        }
-        else {
-            score -= souls;
-            return true;
-        }
-    }
 }
