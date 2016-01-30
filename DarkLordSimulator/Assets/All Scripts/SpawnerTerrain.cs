@@ -3,7 +3,8 @@ using System.Collections;
 
 public class SpawnerTerrain : WorldTerrain {
 
-		OurGameObject toSpawn;
+    public OurGameObject toSpawn;
+    int spawnCap;
 
 
 	// Use this for initialization
@@ -15,4 +16,8 @@ public class SpawnerTerrain : WorldTerrain {
 	void Update () {
 	
 	}
+
+    void spawn(int toSpawn) {
+        //TODO
+    }
 }
