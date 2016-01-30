@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class SummonItem : MonoBehaviour {
+
+    OurGameObject toSummon;
 
 	// Use this for initialization
 	void Start () {
