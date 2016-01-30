@@ -19,7 +19,7 @@ public class Game : MonoBehaviour {
         ArrayList toReturn = new ArrayList ();
 
         foreach (OurGameObject obj in gameObjects) {
-            if (obj.distanceTo (origin) < radius) {
+            if (obj.distanceTo (origin).magnitude < radius) {
                 toReturn.Add (obj);
             }
         }
