@@ -32,8 +32,10 @@ public class Game : MonoBehaviour {
 
     public int getVillagerCount(){
         int sum = 0;
-        foreach (Villager v in gameObjects){
-            sum += 1;
+        foreach (OurGameObject obj in gameObjects){
+            if (obj is Villager) {
+                sum++;
+            }
         }
         return sum;
     }

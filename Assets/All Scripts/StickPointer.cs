@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InControl;
 
 public class StickPointer : MonoBehaviour {
 	public GameObject stick;
@@ -12,14 +13,13 @@ public class StickPointer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Vector3.Distance(player.transform.position, Input.mousePosition) < Vector3.Distance(stick.transform.position, player.transform.position)) {
-						stick.transform.position = Camera.main.ScreenToWorldPoint (Input.mousePosition) + new Vector3 (0, 0, 10);
-				} else {
-				
-						Vector3 difference = Camera.main.ScreenToWorldPoint (Input.mousePosition) - transform.position;
-						difference.Normalize ();
-						float rotZ = Mathf.Atan2 (difference.y, difference.x) * Mathf.Rad2Deg;
-						transform.rotation = Quaternion.Euler (0f, 0f, rotZ + rotationOffset);
-				}
+		InputDevice device = InputManager.ActiveDevice;
+		if (device.RightStick.X == 0 && device.RightStick.Y == 0 ) {
+			stick.transform.position = player.transform.position;
+		} 
+
+		else {
+			stick.transform.position = player.transform.position + new Vector3 (device.RightStick.X * 3, device.RightStick.Y * 3, stick.transform.position.z);
+			}
 	}
 }
