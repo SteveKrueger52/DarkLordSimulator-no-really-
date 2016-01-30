@@ -26,7 +26,7 @@ public class Player : Character {
     void useItem() {
         if (inventory.Count != 0) {
             Item temp = (Item)inventory [inventoryIndex];
-            temp.useItem (this);
+            temp.activateItem (this);
             inventory.RemoveAt (inventoryIndex);
             if(inventoryIndex >= inventory.Count) {
                 inventoryIndex = inventory.Count - 1; 
@@ -34,11 +34,11 @@ public class Player : Character {
         }
     }
 
-    public virtual bool sameTeam(Minion c) {
+    public bool sameTeam(Minion c) {
         return this.team == c.team;
     }
 
-    public virtual bool sameTeam(Player c) {
+    public bool sameTeam(Player c) {
         return this.team == c.team;
     }
 }
