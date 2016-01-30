@@ -7,10 +7,12 @@ public abstract class SpawnerTerrain : WorldTerrain {
     int spawnCooldown = 100;
     float spawnRadius = 5.0f;
 
+
+
     // Update is called once per frame
     void Update () {
         if (--spawnCooldown == 0) {
-            if (world.getObjectsWithin (this, spawnRadius).Count < 20) {
+            if (world.getVillagerCount() < 20) {
                 
                 OurGameObject temp = this.spawn ();
                 world.addObject (temp);

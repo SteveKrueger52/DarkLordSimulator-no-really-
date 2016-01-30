@@ -15,7 +15,7 @@ public class Villager : NonPlayerCharacter {
 	
 	}
 
-    public bool sameTeam(Character c) {
+    override public bool sameTeam(Character c) {
         return false;
     }
 }

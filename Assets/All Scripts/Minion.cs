@@ -7,12 +7,16 @@ public class Minion : NonPlayerCharacter {
     ArrayList holds; // All Villagers being held
     int holdCapacity;
     Vector2 target;
-    NonPlayerCharacter temp;
-    int range;
-    int range2;
+    static int range = 5;
+    static int range2 = 10;
 
     // Use this for initialization
-    void Start () {
+    Minion(Player leader) {
+        this.leader = leader;
+        this.team = leader.team;
+        holds = new ArrayList();
+        holdCapacity = 1;
+        target = leader.refPos;
     }
 
     public void Sacrifice(){
@@ -36,6 +40,8 @@ public class Minion : NonPlayerCharacter {
             }
         }
         if (!(temp == this.leader)) {
+            target.x = temp.transform.localPosition.x;
+            target.y = temp.transform.localPosition.y;
             return true;
         } else {
             return false;
@@ -43,11 +49,11 @@ public class Minion : NonPlayerCharacter {
 
     }
 
-    public virtual bool sameTeam(Minion c) {
+    override public bool sameTeam(Minion c) {
         return this.team == c.team;
     }
 
-    public virtual bool sameTeam(Player c) {
+    override public bool sameTeam(Player c) {
         return this.team == c.team;
     }
     // Update is called once per frame
@@ -57,10 +63,10 @@ public class Minion : NonPlayerCharacter {
         if (distanceTo(leader).magnitude > range2){
             target = leader.refPos;
         } else if (GetClosestEnemy()){
-            target.x = temp.transform.localPosition.x;
-            target.y = temp.transform.localPosition.y;
+            //NO-OP
         } else {
-            target = leader.refPos;}
+            target = leader.refPos;
+        }
 
         this.acceleration.x = target.x - this.transform.localPosition.x;
         this.acceleration.y = target.y - this.transform.localPosition.y;

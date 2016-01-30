@@ -30,4 +30,12 @@ public class Game : MonoBehaviour {
         gameObjects.Add (toAdd);
     }
 
+    public int getVillagerCount(){
+        int sum = 0;
+        foreach (Villager v in gameObjects){
+            sum += 1;
+        }
+        return sum;
+    }
+
 }

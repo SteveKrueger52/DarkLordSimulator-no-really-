@@ -3,10 +3,10 @@ using System.Collections;
 
 public abstract class Character : OurGameObject {
 
-	public int hp;
-	private int maxHP;
-	private float regen; // we should figure out how this works
-    private int damageValue;
+    [SerializeField] public int hp;
+    [SerializeField] private int maxHP;
+    [SerializeField] private float regen; // we should figure out how this works
+    [SerializeField] private int damageValue;
 
     void attack(Character enemy) {
         enemy.hp -= damageValue;

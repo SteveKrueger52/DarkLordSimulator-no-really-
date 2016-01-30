@@ -34,11 +34,15 @@ public class Player : Character {
         }
     }
 
-    public bool sameTeam(Minion c) {
+    public void convert (Villager v) {
+        // How Do???
+    }
+
+    override public bool sameTeam(Minion c) {
         return this.team == c.team;
     }
 
-    public bool sameTeam(Player c) {
+    override public bool sameTeam(Player c) {
         return this.team == c.team;
     }
 }
