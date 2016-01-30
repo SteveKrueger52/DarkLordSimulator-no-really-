@@ -18,4 +18,13 @@ public class Team : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public bool spendSouls(int souls) {
+        if (score - souls < 0) {
+            return false;
+        }
+        else {
+            score -= souls;
+        }
+    }
 }

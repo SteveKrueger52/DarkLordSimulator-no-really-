@@ -1,18 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawnerTerrain : WorldTerrain {
+public abstract class SpawnerTerrain : WorldTerrain {
+    
+    int spawnCapacity = 20;
+    int spawnCooldown = 100;
+    float spawnRadius = 5.0f;
 
-		OurGameObject toSpawn;
+    // Update is called once per frame
+    void Update () {
+        if (--spawnCooldown == 0) {
+            if (world.getObjectsWithin (this, spawnRadius).Count < 20) {
+                
+                OurGameObject temp = this.spawn ();
+                world.addObject (temp);
+                spawnCooldown = 100 + Random.Range (-50, 50);
+            }
+        }
+    }
 
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    abstract OurGameObject spawn ();
 }
