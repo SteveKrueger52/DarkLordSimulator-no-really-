@@ -3,12 +3,12 @@ using System.Collections;
 
 public class Minion : NonPlayerCharacter {
 
-		Player leader;
-		Team team;
-		ArrayList holds; // All Villagers being held
-		int holdCapacity;
-		Vector2 target;
-	NonPlayerCharacter temp;
+    Player leader;
+    public Team team;
+    ArrayList holds; // All Villagers being held
+    int holdCapacity;
+    Vector2 target;
+    NonPlayerCharacter temp;
 	int range;
 	int range2;
 
@@ -19,31 +19,39 @@ public class Minion : NonPlayerCharacter {
 
 	public void Sacrifice(){
 		if (holds.Count > 0) {
-			this.team.AddScore (holds.Count);
+			this.team.addScore (holds.Count);
 			holds.Clear ();
 		}
 	}
 
 	public bool GetClosestEnemy(){
-		
-		foreach (OurGameObject m in Game.getObjectsWithin(this, range)) {
-			temp = this.leader;
-			if (m is NonPlayerCharacter) {
-				if (m is Minion) {
-					if ((this.team != (Minion)m.team) && distanceTo (m) < distanceTo (temp)) {
-						temp = m;
-					}
-				} else if (distanceTo (m) < distanceTo (temp)) {
-					temp = m;
+        Character temp = this.leader;
+        foreach (OurGameObject m in world.getObjectsWithin(this, range)) {
+            if (m is NonPlayerCharacter) {
+                if (m is Minion) {
+                    if (!sameTeam((Minion)m) && (distanceTo (m).magnitude < distanceTo (temp).magnitude)) {
+                        temp = (Minion)m;
+                    }
+                } else if (distanceTo (m).magnitude < distanceTo (temp).magnitude) {
+                    temp = (NonPlayerCharacter)m;
 				}
 			}
 		}
-		if (!(temp is this.leader)){
-			return true;
-		} else return false;
+        if (!(temp == this.leader)) {
+            return true;
+        } else {
+            return false;
+        }
 
 	}
 	
+    public virtual bool sameTeam(Minion c) {
+        return this.team == c.team;
+    }
+
+    public virtual bool sameTeam(Player c) {
+        return this.team == c.team;
+    }
 	// Update is called once per frame
 	void Update () {
 		
@@ -54,7 +62,7 @@ public class Minion : NonPlayerCharacter {
 			target.x = temp.transform.localPosition.x;
 			target.y = temp.transform.localPosition.y;
 		} else {
-			target = leader.refpos;}
+			target = leader.refPos;}
 
 		this.acceleration.x = target.x - this.transform.localPosition.x;
 		this.acceleration.y = target.y - this.transform.localPosition.y;

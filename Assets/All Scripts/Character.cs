@@ -18,4 +18,15 @@ public abstract class Character : OurGameObject {
     void die() {
         //TODO
     }
+
+    public virtual bool sameTeam (Character c) {
+        return c.sameTeam(this);
+    }
+    public virtual bool sameTeam(Minion c) {
+        return c.sameTeam(this);
+    }
+
+    public virtual bool sameTeam(Player c) {
+        return c.sameTeam(this);
+    }
 }

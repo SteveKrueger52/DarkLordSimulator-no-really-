@@ -33,4 +33,12 @@ public class Player : Character {
             }
         }
     }
+
+    public bool sameTeam(Minion c) {
+        return this.team == c.team;
+    }
+
+    public bool sameTeam(Player c) {
+        return this.team == c.team;
+    }
 }

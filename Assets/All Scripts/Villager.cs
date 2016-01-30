@@ -14,4 +14,8 @@ public class Villager : NonPlayerCharacter {
 	void Update () {
 	
 	}
+
+    public bool sameTeam(Character c) {
+        return false;
+    }
 }
