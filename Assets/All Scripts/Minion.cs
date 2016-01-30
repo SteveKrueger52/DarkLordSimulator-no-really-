@@ -17,6 +17,13 @@ public class Minion : NonPlayerCharacter {
 
 	}
 
+	public void Sacrifice(){
+		if (holds.Count > 0) {
+			this.team.AddScore (holds.Count);
+			holds.Clear ();
+		}
+	}
+
 	public bool GetClosestEnemy(){
 		
 		foreach (OurGameObject m in Game.getObjectsWithin(this, range)) {
