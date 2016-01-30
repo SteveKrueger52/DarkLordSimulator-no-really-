@@ -15,7 +15,7 @@ public class Villager : NonPlayerCharacter {
 	
 	}
 
-    public bool sameTeam(Character c) {
+    public virtual bool sameTeam(Character c) {
         return false;
     }
 }
