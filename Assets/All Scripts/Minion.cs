@@ -22,13 +22,18 @@ public class Minion : NonPlayerCharacter {
 	//get behavior
 		if (distanceTo(leader).magnitude > range2){
 			target = leader.refPos;
-		} else if (closest enemy within range){
+		//} else if (closest enemy within range){
 			//set target to enemy
-		} else if (closest Villager within range){
+		//} else if (closest Villager within range){
 			//set target to villager
 		} else {
-			target = leader.refpos;}
+			target = leader.refPos;
+        }
 
-		Move ();
+		move ();
 	}
+
+    void move() {
+        
+    }
 }
