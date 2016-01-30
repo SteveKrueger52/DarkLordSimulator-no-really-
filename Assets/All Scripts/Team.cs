@@ -19,6 +19,9 @@ public class Team : MonoBehaviour {
 	
 	}
 
+    public void addScore(int score) {
+        this.score += score;
+    }
     public bool spendSouls(int souls) {
         if (score - souls < 0) {
             return false;
