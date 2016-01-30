@@ -7,6 +7,7 @@ public class Player : Character {
     public Vector2 refPos;
     public ArrayList inventory; // Items in inventory
     private int inventoryIndex;
+	public int souls = 0;
 
     // Use this for initialization
     void Start () {
@@ -19,7 +20,7 @@ public class Player : Character {
 
     }
 
-    void getItem(Item toGet) {
+    void addItem(Item toGet) {
         inventory.Add (toGet);
     }
 

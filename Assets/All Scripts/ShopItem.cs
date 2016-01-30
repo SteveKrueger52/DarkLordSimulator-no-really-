@@ -18,7 +18,7 @@ public class ShopItem : WorldTerrain {
 
 	void Transaction(Player p) {
 		if (p.souls >= price) {
-			p.addItem(toSell);
+			p.inventory.Add (toSell);
 			p.souls -= price;
 		}
 	}
