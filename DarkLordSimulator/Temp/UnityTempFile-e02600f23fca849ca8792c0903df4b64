@@ -82,6 +82,7 @@
 'Assets/All Scripts/Boss.cs'
 'Assets/All Scripts/Character.cs'
 'Assets/All Scripts/EffectItem.cs'
+'Assets/All Scripts/Game.cs'
 'Assets/All Scripts/Item.cs'
 'Assets/All Scripts/Minion.cs'
 'Assets/All Scripts/NonPlayerCharacter.cs'
