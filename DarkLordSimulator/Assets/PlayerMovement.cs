@@ -3,7 +3,9 @@ using System.Collections;
 using InControl;
 
 public class PlayerMovement : MonoBehaviour {
-
+	// Use this for initialization
+	string[] items = new string[5];
+	int idx = 0;
 	// Use this for initialization
 	void Start () {
 	

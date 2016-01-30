@@ -5,8 +5,9 @@ public class Player : Character {
 
 		public Team team;
 		public Vector2 refPos;
-		// public ArrayList<Item> inventory;
-		private int inventoryIndex;
+	    public Item[] inventory;
+		private int inventoryIndex = 0;
+	    public int credits = 200;
 
 	// Use this for initialization
 	void Start () {
@@ -16,5 +17,11 @@ public class Player : Character {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	//Adds an Item to Inventory
+	public void addItem(Item i) {
+		inventory [inventoryIndex] = i;
+		inventoryIndex++;
 	}
 }
