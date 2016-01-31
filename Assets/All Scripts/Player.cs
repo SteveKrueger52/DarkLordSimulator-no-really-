@@ -8,6 +8,7 @@ public class Player : Character {
     public ArrayList inventory; // Items in inventory
     private int inventoryIndex;
 	public int souls = 0;
+    [SerializeField] GameObject toSpawn;
 
     // Use this for initialization
     void Start () {
@@ -17,7 +18,19 @@ public class Player : Character {
     // Update is called once per frame
     void Update () {
 
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            GameObject temp = Instantiate (toSpawn.gameObject);
+            Minion temp2 = temp.GetComponent<Minion>();
+            temp2.transform.localPosition = new Vector3 (
+                this.transform.localPosition.x + (10f * (Random.value - .5f)),
+                this.transform.localPosition.y + (10f * (Random.value - .5f)), 0f);
 
+            temp2.team = this.team;
+            temp2.target = this.refPos;
+            temp2.leader = this;
+
+            world.addObject(temp.GetComponent<OurGameObject>());
+        }
     }
 
     void addItem(Item toGet) {

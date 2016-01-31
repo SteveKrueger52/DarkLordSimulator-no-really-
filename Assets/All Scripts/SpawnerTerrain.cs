@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class SpawnerTerrain : WorldTerrain {
+public class SpawnerTerrain : WorldTerrain {
     
     int spawnCapacity = 20;
     int spawnCooldown = 100;
     float spawnRadius = 5.0f;
 
-
+    [SerializeField] GameObject toSpawn;
 
     // Update is called once per frame
     void Update () {
@@ -21,5 +21,12 @@ public abstract class SpawnerTerrain : WorldTerrain {
         }
     }
 
-    protected abstract OurGameObject spawn ();
+    private OurGameObject spawn () {
+        GameObject temp = Instantiate (toSpawn.gameObject);
+        OurGameObject temp2 = temp.GetComponent<OurGameObject>();
+        temp2.transform.localPosition = new Vector3 (
+            this.transform.localPosition.x + (10f * (Random.value - .5f)),
+            this.transform.localPosition.y + (10f * (Random.value - .5f)), 0f);
+        return temp.GetComponent<OurGameObject>();
+    }
 }

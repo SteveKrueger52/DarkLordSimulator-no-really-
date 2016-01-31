@@ -2,22 +2,15 @@
 using System.Collections;
 
 public class Minion : NonPlayerCharacter {
-    Player leader;
+    public Player leader;
     public Team team;
-    ArrayList holds; // All Villagers being held
-    int holdCapacity;
-    Vector2 target;
+    ArrayList holds = new ArrayList(); // All Villagers being held
+    int holdCapacity = 1;
+    public Vector2 target;
     static int range = 5;
     static int range2 = 10;
 
     // Use this for initialization
-    Minion(Player leader) {
-        this.leader = leader;
-        this.team = leader.team;
-        holds = new ArrayList();
-        holdCapacity = 1;
-        target = leader.refPos;
-    }
 
     public void Sacrifice(){
         if (holds.Count > 0) {
@@ -30,25 +23,24 @@ public class Minion : NonPlayerCharacter {
         }
     }
 
-    public bool GetClosestEnemy(){
+    public void GetClosestEnemy(){
         Character temp = this.leader;
-        foreach (OurGameObject m in world.getObjectsWithin(this, range)) {
-            if (m is NonPlayerCharacter) {
-                if (m is Minion) {
-                    if (!sameTeam((Minion)m) && (distanceTo (m).magnitude < distanceTo (temp).magnitude)) {
-                        temp = (Minion)m;
-                    }
-                } else if (distanceTo (m).magnitude < distanceTo (temp).magnitude) {
-                    temp = (NonPlayerCharacter)m;
+        foreach (NonPlayerCharacter m in world.getObjectsWithin(this, range)) {
+            if (m is Minion) {
+                if (!sameTeam((Minion)m) && (distanceTo (m).magnitude < distanceTo (temp).magnitude)) {
+                    temp = (Character) m;
                 }
+            } else if (distanceTo (m).magnitude < distanceTo (temp).magnitude) {
+                temp = (Character) m;
+
             }
         }
         if (!(temp == this.leader)) {
-            target.x = temp.transform.localPosition.x;
-            target.y = temp.transform.localPosition.y;
-            return true;
+            target = new Vector2(temp.transform.localPosition.x, temp.transform.localPosition.y);
+            //return true;
         } else {
-            return false;
+            target = leader.refPos;
+            //return false;
         }
 
     }
@@ -60,16 +52,17 @@ public class Minion : NonPlayerCharacter {
     void Update() {
 
         //get behavior
-        if (distanceTo(leader).magnitude > range2) {
+        if (distanceTo(leader).magnitude >= range2) {
             target = leader.refPos;
-        } else if (GetClosestEnemy()){
-            //NO-OP
-        } else {
-            target = leader.refPos;
+        } else if (world.getObjectsWithin(this, range2) != null){ 
+            int rand = Random.Range (0, world.getObjectsWithin (this, range2).Count - 1);
+            if (((OurGameObject)world.getObjectsWithin (this, range2) [rand]) is Villager) {
+                target = ((OurGameObject)world.getObjectsWithin (this, range2) [rand]).transform.position;
+            }
         }
-
-        this.acceleration.x = target.x - this.transform.localPosition.x;
-        this.acceleration.y = target.y - this.transform.localPosition.y;
+        this.acceleration =new Vector2(
+            target.x - this.transform.localPosition.x,
+            target.y - this.transform.localPosition.y);
         Move();
     }
 }
