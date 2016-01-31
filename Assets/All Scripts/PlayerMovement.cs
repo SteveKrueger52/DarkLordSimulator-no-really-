@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using InControl;
 
 public class PlayerMovement : MonoBehaviour {
-
+	// Use this for initialization
+	string[] items = new string[5];
+	int idx = 0;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,18 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(KeyCode.UpArrow)) {
-			GetComponent<Rigidbody2D>().transform.Translate(new Vector2(0, .1f));
-		}
-		if (Input.GetKey(KeyCode.DownArrow)) {
-			GetComponent<Rigidbody2D>().transform.Translate(new Vector2(0, -0.1f));
-		}
-		if (Input.GetKey(KeyCode.RightArrow)) {
-			GetComponent<Rigidbody2D>().transform.Translate(new Vector2(0.1f, 0));
-		}
-		if (Input.GetKey(KeyCode.LeftArrow)) {
-			GetComponent<Rigidbody2D>().transform.Translate(new Vector2(-0.1f, 0));
-		}
-	
+		InputDevice device = InputManager.ActiveDevice;
+		transform.Translate (new Vector3 (Time.deltaTime * device.LeftStick.X, Time.deltaTime * device.LeftStick.Y, 0f), Space.World);
 	}
 }
