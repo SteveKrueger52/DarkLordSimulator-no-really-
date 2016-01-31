@@ -41,7 +41,11 @@ public class Game : MonoBehaviour {
             gameObjects.Add (obj);
         }
 	}
-	
+
+	public Player getPlayer(int f) {
+		return players[f];
+	}
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -57,6 +61,10 @@ public class Game : MonoBehaviour {
         }
         return toReturn;
     }
+
+	public NarratorSound getNarrator() {
+		return gameObject.GetComponent<NarratorSound> ();
+	}
 
     public void addObject (OurGameObject toAdd) {
         gameObjects.Add (toAdd);

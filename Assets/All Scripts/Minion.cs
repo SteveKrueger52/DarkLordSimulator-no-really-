@@ -28,6 +28,7 @@ public class Minion : NonPlayerCharacter {
 			}
             this.team.addScore (z);
             holds.Clear ();
+			world.getNarrator().OnTriggerVoice(50, new int[10] {0,1,2,3,5,11,16,17,19,25});
         }
     }
 
@@ -78,8 +79,9 @@ public class Minion : NonPlayerCharacter {
         return (holds.Count > 0);
     }
 
-	public abstract void die() {
+	public override void die() {
 		PlaySound (Random.Range(0,3));
+		world.getNarrator().OnTriggerVoice(25, new int[8] {0,1,2,3,10,26,20,27});
 		world.removeObject (this);
 		Destroy (this);
 	}
