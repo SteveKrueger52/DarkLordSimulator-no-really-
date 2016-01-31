@@ -28,7 +28,7 @@ public class Minion : NonPlayerCharacter {
 			foreach (Villager v in holds) {
 				z += v.sacrificeValue;
 			}
-            this.team.addScore (z);
+            this.leader.souls += z;
             holds.Clear ();
 			world.getNarrator().OnTriggerVoice(50, new int[10] {0,1,2,3,5,11,16,17,19,25});
         }
