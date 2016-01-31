@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NarratorSound : MonoBehaviour {
-	AudioSource source = this.GetComponent<AudioSource>();
+	public class NarratorSound : MonoBehaviour {
+	public AudioSource source;
 	public AudioClip[] quotes;
 	int x = 0;
 	int timer = 0;
@@ -24,16 +24,16 @@ public class NarratorSound : MonoBehaviour {
 		int clip = Random.Range (0, clips.Length - 1);
 		if ((newOdds > odds) && (timer == 0)) {
 			source.clip = clips [clip];
-			source.PlayOneShot();
+			source.PlayOneShot (source.clip);
 			timer = 120;
 		}
 	}
 
-	public void OnTriggerImportantVoice(AudioClip[] clips) {
+	public IEnumerator OnTriggerImportantVoice(AudioClip[] clips) {
 		int clip = Random.Range (0, clips.Length - 1);
 		if (timer > 0) {
 			source.clip = clips [clip];
-			source.PlayOneShot ();
+			source.PlayOneShot (source.clip);
 		}
 		else {
 			yield return new WaitForSeconds(5);
