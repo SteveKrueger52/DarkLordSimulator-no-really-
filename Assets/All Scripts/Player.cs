@@ -41,7 +41,7 @@ public class Player : Character {
         }
     }
 
-    public void convert (Villager v) {
+    public void convert () {
         foreach (Villager m in world.getObjectsWithin(this, 0.5f)) {
             m.die ();
             GameObject temp = Instantiate (toSpawn.gameObject);
