@@ -7,12 +7,15 @@ public class Player : Character {
     public Vector2 refPos;
     public ArrayList inventory; // Items in inventory
     private int inventoryIndex;
+    private UnityEngine.Color color;
 	public int souls = 0;
     [SerializeField] GameObject toSpawn;
 
     // Use this for initialization
     void Start () {
         team.addPlayer (this);
+        color = team.teamColor;
+
     }
 
     // Update is called once per frame

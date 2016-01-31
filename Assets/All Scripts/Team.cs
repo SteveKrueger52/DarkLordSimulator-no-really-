@@ -10,13 +10,13 @@ public class Team : MonoBehaviour {
     public int score = 0;
 
 	[SerializeField] public int teamID;
-	[SerializeField] public TextMesh playerDisplay;
+	//[SerializeField] public TextMesh playerDisplay;
 	[SerializeField] public TextMesh scoreDisplay;
 
 
 	// Use this for initialization
 	void Start () {
-		playerDisplay.text = "Player: " + teamID.ToString();
+		//playerDisplay.text = "Player: " + teamID.ToString();
 	}
 	
 	// Update is called once per frame

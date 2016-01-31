@@ -9,6 +9,8 @@ public class Minion : NonPlayerCharacter {
     public Vector2 target;
     static int range = 5;
     static int range2 = 10;
+	static int attackcooldown = 30;
+
 
     // Use this for initialization
 
@@ -50,6 +52,26 @@ public class Minion : NonPlayerCharacter {
     }
     // Update is called once per frame
     void Update() {
+
+		if (attackcooldown > 0){
+			attackcooldown--;
+		}
+
+		if (attackcooldown == 0){
+			foreach (Minion m in world.getObjectsWithin(this, 1)){
+				if ((!sameTeam (m)) && (attackcooldown == 0))
+					this.attack (m);
+				attackcooldown = 30;
+			}
+
+			foreach (Villager v in world.getObjectsWithin(this, 1)){
+				if (attackcooldown == 0)
+					holds.Add (v);
+					this.attack (v);
+				attackcooldown = 30;
+			}
+
+		}
 
         //get behavior
         if (distanceTo(leader).magnitude >= range2) {

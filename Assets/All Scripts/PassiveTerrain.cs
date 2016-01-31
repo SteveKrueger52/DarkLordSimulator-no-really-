@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PassiveTerrain : WorldTerrain {
 
-    [SerializeField] bool lethal; // will minions die if they touch this?
+    [SerializeField] bool lethal = false; // will minions die if they touch this?
 
     // Use this for initialization
     void Start () {

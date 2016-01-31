@@ -8,7 +8,7 @@ public abstract class Character : OurGameObject {
     [SerializeField] private float regen; // we should figure out how this works
     [SerializeField] private int damageValue;
 
-    void attack(Character enemy) {
+    protected void attack(Character enemy) {
         enemy.hp -= damageValue;
         if (enemy.hp < 0) {
             enemy.die ();
