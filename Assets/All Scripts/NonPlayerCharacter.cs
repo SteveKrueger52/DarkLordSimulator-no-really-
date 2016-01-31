@@ -3,7 +3,7 @@ using System.Collections;
 
 public abstract class NonPlayerCharacter : Character {
     Vector2 speed = new Vector2();
-		float maxspeed = 0.1f;
+		float maxspeed = 0.05f;
 		protected Vector2 acceleration;
 
 	public void Move(){
