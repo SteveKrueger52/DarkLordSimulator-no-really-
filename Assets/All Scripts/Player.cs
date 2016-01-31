@@ -3,25 +3,47 @@ using System.Collections;
 
 public class Player : Character {
 
-		public Team team;
-		public Vector2 refPos;
-	    public Item[] inventory;
-		private int inventoryIndex = 0;
-	    public int souls = 200;
+    public Team team;
+    public Vector2 refPos;
+    public ArrayList inventory; // Items in inventory
+    private int inventoryIndex;
+	public int souls = 0;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+    void Start () {
+        
+    }
 
-	//Adds an Item to Inventory
-	public void addItem(Item i) {
-		inventory [inventoryIndex] = i;
-		inventoryIndex++;
-	}
+    // Update is called once per frame
+    void Update () {
+
+
+    }
+
+    void addItem(Item toGet) {
+        inventory.Add (toGet);
+    }
+
+    void useItem() {
+        if (inventory.Count != 0) {
+            Item temp = (Item)inventory [inventoryIndex];
+            temp.activateItem (this);
+            inventory.RemoveAt (inventoryIndex);
+            if(inventoryIndex >= inventory.Count) {
+                inventoryIndex = inventory.Count - 1; 
+            }
+        }
+    }
+
+    public void convert (Villager v) {
+        // How Do???
+    }
+
+    override public bool sameTeam(Minion c) {
+        return this.team == c.team;
+    }
+
+    override public bool sameTeam(Player c) {
+        return this.team == c.team;
+    }
 }

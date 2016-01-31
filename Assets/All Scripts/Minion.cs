@@ -21,7 +21,11 @@ public class Minion : NonPlayerCharacter {
 
     public void Sacrifice(){
         if (holds.Count > 0) {
-            this.team.addScore (holds.Count);
+			int z = 0;
+			foreach (Villager v in holds) {
+				z += v.sacrificeValue;
+			}
+            this.team.addScore (z);
             holds.Clear ();
         }
     }
@@ -52,15 +56,11 @@ public class Minion : NonPlayerCharacter {
     override public bool sameTeam(Minion c) {
         return this.team == c.team;
     }
-
-    override public bool sameTeam(Player c) {
-        return this.team == c.team;
-    }
     // Update is called once per frame
-    void Update () {
+    void Update() {
 
         //get behavior
-        if (distanceTo(leader).magnitude > range2){
+        if (distanceTo(leader).magnitude > range2) {
             target = leader.refPos;
         } else if (GetClosestEnemy()){
             //NO-OP
