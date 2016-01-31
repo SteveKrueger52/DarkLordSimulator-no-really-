@@ -16,7 +16,10 @@ public class Team : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        score = 0;
+        foreach (Player p in players) {
+            this.score += p.souls;
+        }
 	}
 
     public void addScore(int score) {
