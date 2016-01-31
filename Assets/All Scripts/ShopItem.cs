@@ -15,4 +15,11 @@ public class ShopItem : WorldTerrain {
 	void Update () {
 	
 	}
+
+	void Transaction(Player p) {
+		if (p.souls >= price) {
+			p.addItem(toSell);
+			p.souls -= price;
+		}
+	}
 }
