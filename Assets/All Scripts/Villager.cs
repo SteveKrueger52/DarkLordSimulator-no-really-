@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Villager : NonPlayerCharacter {
 
-		int sacrificeValue;
+		public int sacrificeValue;
 
 	// Use this for initialization
 	void Start () {
