@@ -10,11 +10,19 @@ public class Minion : NonPlayerCharacter {
     static int range = 5;
     static int range2 = 10;
 
+	public AudioClip[] audioClip;
+
+	public void PlaySound(int clip){
+		GetComponent<AudioSource>().clip = audioClip [clip];
+		GetComponent<AudioSource>().Play ();
+	}
+
     // Use this for initialization
 
     public void Sacrifice(){
         if (holds.Count > 0) {
 			int z = 0;
+			PlaySound (4);
 			foreach (Villager v in holds) {
 				z += v.sacrificeValue;
 			}
@@ -69,6 +77,12 @@ public class Minion : NonPlayerCharacter {
     public bool canSacrifice() {
         return (holds.Count > 0);
     }
+
+	public abstract void die() {
+		PlaySound (Random.Range(0,3));
+		world.removeObject (this);
+		Destroy (this);
+	}
 
 
 }
