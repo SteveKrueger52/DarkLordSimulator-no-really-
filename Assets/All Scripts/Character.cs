@@ -11,7 +11,7 @@ public abstract class Character : OurGameObject {
     void attack(Character enemy) {
         enemy.hp -= damageValue;
 		if (enemy is Villager) {
-			world.getNarrator().OnTriggerVoice(75, new int[9] (0,1,2,3,16,21,18,12,29));
+			world.getNarrator().OnTriggerVoice(75, new int[9] {0,1,2,3,16,21,18,12,29});
 		}
         if (enemy.hp < 0) {
             enemy.die ();
