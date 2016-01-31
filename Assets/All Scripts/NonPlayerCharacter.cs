@@ -21,7 +21,7 @@ public abstract class NonPlayerCharacter : Character {
         this.transform.localPosition = pos;
 	}
 
-    public void die() {
+    public virtual void die() {
         world.removeObject (this);
         Destroy (this);
     }

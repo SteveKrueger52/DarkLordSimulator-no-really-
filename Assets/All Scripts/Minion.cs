@@ -12,16 +12,25 @@ public class Minion : NonPlayerCharacter {
 	static int attackcooldown = 30;
 
 
+	public AudioClip[] audioClip;
+
+	public void PlaySound(int clip){
+		GetComponent<AudioSource>().clip = audioClip [clip];
+		GetComponent<AudioSource>().Play ();
+	}
+
     // Use this for initialization
 
     public void Sacrifice(){
         if (holds.Count > 0) {
 			int z = 0;
+			PlaySound (4);
 			foreach (Villager v in holds) {
 				z += v.sacrificeValue;
 			}
             this.team.addScore (z);
             holds.Clear ();
+			world.getNarrator().OnTriggerVoice(50, new int[10] {0,1,2,3,5,11,16,17,19,25});
         }
     }
 
@@ -91,6 +100,13 @@ public class Minion : NonPlayerCharacter {
     public bool canSacrifice() {
         return (holds.Count > 0);
     }
+
+	public override void die() {
+		PlaySound (Random.Range(0,3));
+		world.getNarrator().OnTriggerVoice(25, new int[8] {0,1,2,3,10,26,20,27});
+		world.removeObject (this);
+		Destroy (this);
+	}
 
 
 }
