@@ -7,15 +7,21 @@ public class StickPointer : MonoBehaviour {
 	public GameObject player;
 	public int rotationOffset = 90;
 	public int playerNum;
+	public InputDevice inputDevice;
 
 	// Use this for initialization
 	void Start () {
+		
+
+	}
+
+	public void getInputFromParent(){
+		inputDevice = gameObject.GetComponentInParent<PlayerMovement> ().inputDevice;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		InputDevice device = InputManager.ActiveDevice;
-		var inputDevice = (InputManager.Devices.Count > playerNum) ? InputManager.Devices[playerNum] : null;
+		
 		if (inputDevice == null)
 		{
 			Destroy(this.gameObject);

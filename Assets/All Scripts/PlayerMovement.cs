@@ -8,14 +8,16 @@ public class PlayerMovement : MonoBehaviour {
     string[] items = new string[5];
     int idx = 0;
     Animation anim;
+	public InputDevice inputDevice;
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animation>();
+		inputDevice = (InputManager.Devices.Count > playerNum) ? InputManager.Devices[playerNum] : null;
+		GetComponentInChildren<StickPointer> ().getInputFromParent();
     }
 
     // Update is called once per frame
     void Update () {
-        var inputDevice = (InputManager.Devices.Count > playerNum) ? InputManager.Devices[playerNum] : null;
         if (inputDevice == null)
         {
             Destroy(this.gameObject);
@@ -28,6 +30,9 @@ public class PlayerMovement : MonoBehaviour {
 
     void UpdateCubeWithInputDevice(InputDevice device)
     {
+		if (device.Action1.WasPressed) {
+			gameObject.GetComponent<Player> ().convert ();
+		}
         if (device.LeftStick.X == 0 && device.LeftStick.Y == 0) {
             anim.Play ("Idle Cultist");
         }
