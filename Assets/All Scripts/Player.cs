@@ -12,24 +12,14 @@ public class Player : Character {
 
     // Use this for initialization
     void Start () {
-        
+        team.addPlayer (this);
     }
 
     // Update is called once per frame
     void Update () {
 
         if (Input.GetKeyDown(KeyCode.Space)) {
-            GameObject temp = Instantiate (toSpawn.gameObject);
-            Minion temp2 = temp.GetComponent<Minion>();
-            temp2.transform.localPosition = new Vector3 (
-                this.transform.localPosition.x + (10f * (Random.value - .5f)),
-                this.transform.localPosition.y + (10f * (Random.value - .5f)), 0f);
-
-            temp2.team = this.team;
-            temp2.target = this.refPos;
-            temp2.leader = this;
-
-            world.addObject(temp.GetComponent<OurGameObject>());
+            
         }
     }
 
@@ -49,7 +39,17 @@ public class Player : Character {
     }
 
     public void convert (Villager v) {
-        // How Do???
+        foreach (Minion m in world.getObjectsWithin(this, 0.5f)) {
+            GameObject temp = Instantiate (toSpawn.gameObject);
+            Minion temp2 = temp.GetComponent<Minion>();
+            temp2.transform.localPosition = this.transform.localPosition;
+
+            temp2.team = this.team;
+            temp2.target = this.refPos;
+            temp2.leader = this;
+
+            world.addObject(temp.GetComponent<OurGameObject>());
+        }
     }
 
     override public bool sameTeam(Minion c) {

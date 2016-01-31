@@ -65,4 +65,10 @@ public class Minion : NonPlayerCharacter {
             target.y - this.transform.localPosition.y);
         Move();
     }
+
+    public bool canSacrifice() {
+        return (holds.Count > 0);
+    }
+
+
 }

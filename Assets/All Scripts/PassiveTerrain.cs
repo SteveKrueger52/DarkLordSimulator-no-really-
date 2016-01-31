@@ -3,15 +3,22 @@ using System.Collections;
 
 public class PassiveTerrain : WorldTerrain {
 
-		bool lethal; // will minions die if they touch this?
+    bool lethal; // will minions die if they touch this?
 
-		// Use this for initialization
-		void Start () {
+    // Use this for initialization
+    void Start () {
+        
+    }
 
-		}
-
-		// Update is called once per frame
-		void Update () {
-
-		}
+    // Update is called once per frame
+    void Update () {
+        foreach (NonPlayerCharacter m in world.getObjectsWithin(this, 0.2f)) {
+            if (m is Minion && ((Minion)m).canSacrifice()) {
+                ((Minion)m).Sacrifice (); 
+            }
+            if (lethal) {
+                m.die ();
+            }
+        }
+    }
 }

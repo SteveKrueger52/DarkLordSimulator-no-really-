@@ -63,6 +63,10 @@ public class Game : MonoBehaviour {
         toAdd.world = this;
     }
 
+    public void removeObject (OurGameObject toRemove) {
+        gameObjects.Remove (toRemove);
+    }
+
     public int getVillagerCount(){
         int sum = 0;
         foreach (OurGameObject obj in gameObjects){
