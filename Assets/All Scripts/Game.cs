@@ -16,8 +16,8 @@ public class Game : MonoBehaviour {
 
     [SerializeField] Map Arena;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         //Initialize players
         players = new Player [playerCount];
         players [0] = player1;
@@ -33,7 +33,7 @@ public class Game : MonoBehaviour {
             gameObjects.Add (player4);
         }
         //Initialize Terrain from Map PreFab
-        foreach (Terrain obj in Arena) {
+        foreach (Terrain obj in Arena.terrains) {
             gameObjects.Add (obj);
         }
 	}
