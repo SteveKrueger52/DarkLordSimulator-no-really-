@@ -39,7 +39,8 @@ public class Player : Character {
     }
 
     public void convert (Villager v) {
-        foreach (Minion m in world.getObjectsWithin(this, 0.5f)) {
+        foreach (Villager m in world.getObjectsWithin(this, 0.5f)) {
+            m.die ();
             GameObject temp = Instantiate (toSpawn.gameObject);
             Minion temp2 = temp.GetComponent<Minion>();
             temp2.transform.localPosition = this.transform.localPosition;
